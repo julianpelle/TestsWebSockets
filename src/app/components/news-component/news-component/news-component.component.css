@@ -1,0 +1,32 @@
+.new {
+  border: 1px solid #002747;       /* borde suave */
+  border-radius: 8px;           /* esquinas redondeadas */
+  padding: 16px;                /* espacio interno */
+  margin-bottom: 16px;          /* separación entre noticias */
+  background-color: #135cb1;       /* fondo blanco */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* sombra sutil */
+}
+
+.new:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* sombra más fuerte al pasar el mouse */
+  transform: translateY(-2px);            /* efecto de levantar un poquito */
+  transition: all 0.2s ease-in-out;
+}
+
+.new h1 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.new p {
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+      .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

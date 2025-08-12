@@ -1,0 +1,83 @@
+
+<nav class="nav">
+<p>Volver a la <a [routerLink]="'/home'">Pagina principal</a></p>
+<p>Volver a las <a [routerLink]="'/news'">novedades</a></p>
+</nav>
+
+
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate class="space-y-4">
+  <div>
+    <label for="titulo" class="block font-medium">Título</label>
+    <input
+      id="titulo"
+      type="text"
+      formControlName="titulo"
+      class="w-full border rounded px-3 py-2"
+      [attr.aria-invalid]="form.controls.titulo.invalid && form.controls.titulo.touched"
+      placeholder="Ej: Corte de energía en el edificio"
+    />
+    @if (form.controls.titulo.touched && form.controls.titulo.invalid) {
+      <p class="text-red-600 text-sm">
+        @if (form.controls.titulo.errors?.['required']) { El título es obligatorio. }
+        @if (form.controls.titulo.errors?.['minlength']) { Mínimo 3 caracteres. }
+        @if (form.controls.titulo.errors?.['maxlength']) { Máximo 120 caracteres. }
+      </p>
+    }
+  </div>
+
+  <div>
+    <label for="descripcion" class="block font-medium">Descripción</label>
+    <textarea
+      id="descripcion"
+      rows="5"
+      formControlName="descripcion"
+      class="w-full border rounded px-3 py-2"
+      placeholder="Detalle completo de la novedad…"
+    ></textarea>
+    @if (form.controls.descripcion.touched && form.controls.descripcion.invalid) {
+      <p class="text-red-600 text-sm">
+        @if (form.controls.descripcion.errors?.['required']) { La descripción es obligatoria. }
+        @if (form.controls.descripcion.errors?.['minlength']) { Mínimo 10 caracteres. }
+        @if (form.controls.descripcion.errors?.['maxlength']) { Máximo 2000 caracteres. }
+      </p>
+    }
+  </div>
+
+  <div>
+    <label for="prioridad" class="block font-medium">Prioridad (1–5)</label>
+    <input
+      id="prioridad"
+      type="number"
+      formControlName="prioridad"
+      class="w-full border rounded px-3 py-2"
+      min="1"
+      max="5"
+    />
+    @if (form.controls.prioridad.touched && form.controls.prioridad.invalid) {
+      <p class="text-red-600 text-sm">
+        @if (form.controls.prioridad.errors?.['min']) { Mínimo 1. }
+        @if (form.controls.prioridad.errors?.['max']) { Máximo 5. }
+        @if (form.controls.prioridad.errors?.['required']) { La prioridad es obligatoria. }
+      </p>
+    }
+  </div>
+
+  <div class="flex items-center gap-2">
+    <input id="activo" type="checkbox" formControlName="activo" />
+    <label for="activo">Activo</label>
+  </div>
+
+  @if (serverError()) {
+    <div class="rounded border border-red-300 bg-red-50 text-red-800 px-3 py-2">
+      {{ serverError() }}
+    </div>
+  }
+
+  <button
+    type="submit"
+    class="px-4 py-2 rounded bg-black text-white disabled:opacity-50"
+    [disabled]="form.invalid || loading()"
+  >
+    {{ loading() ? 'Guardando…' : 'Crear' }}
+  </button>
+</form>

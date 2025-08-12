@@ -1,0 +1,15 @@
+<h1>Bienvenido a la pagina principal</h1>
+<nav class="nav">
+<p>Navega a las
+  <a href="#" (click)="NavigateToNews($event)">Novedades en tiempo real</a>
+</p>
+<p><a [routerLink]="'/formNews'">Crea una novedad</a></p>
+</nav>
+<div id="notification-overlay">
+    <div id="notification-popup">
+        <h2>Hay una nueva novedad!!!</h2>
+          <button class="follow-btn" (click)="goToNews()">Ir a ver</button>
+
+        <button id="go-to-news-button">Ver novedad</button>
+    </div>
+</div>

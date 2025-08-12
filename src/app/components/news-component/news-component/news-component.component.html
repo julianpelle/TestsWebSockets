@@ -1,0 +1,12 @@
+<h1>Novedades en tiempo real</h1>
+<nav class="nav">
+<p>Volver a la <a [routerLink]="'/home'">Pagina principal</a></p>
+<p><a [routerLink]="'/formNews'">Crea una novedad</a></p>
+</nav>
+@for (new of news; track $index) {
+  <div class="new">
+  <h1>{{new.titulo}}</h1>
+  <p>{{new.descripcion}}</p>
+  </div>
+
+}
