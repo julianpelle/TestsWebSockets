@@ -1,0 +1,14 @@
+<form [formGroup]="form" (ngSubmit)="onLogin()">
+    <fieldset>
+        <legend>Inicio de sesión</legend>
+        <section>
+            <label for="username">Nombre de Usuario</label>
+            <input type="text" id="username" autocomplete="username" formControlName="username">
+        </section>
+        <section>
+            <label for="email">email</label>
+            <input #email type="email" id="email" formControlName="email">
+        </section>
+        <button type="submit" [disabled]="form.invalid">Iniciar sesión</button>
+    </fieldset>
+</form>

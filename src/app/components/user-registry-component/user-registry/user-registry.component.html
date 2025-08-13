@@ -1,1 +1,30 @@
-<p>user-registry works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <fieldset>
+        <legend>Registrarse</legend>
+        <section>
+            <label for="email">Correo electrónico</label>
+            <input type="text" id="email" autocomplete="email" formControlName="email">
+            @if (form.controls['email'].touched) {
+                @if (form.controls['email'].getError('required')) {
+                    <span>El email no puede permanecer vacío</span>
+                }
+                @if (form.controls['email'].getError('email')) {
+                    <span>El email no es un correo válido</span>
+                }
+            }
+        </section>
+        <section>
+            <label for="username">Nombre de Usuario</label>
+            <input type="text" id="fullname" autocomplete="fullname" formControlName="fullname">
+            @if (form.controls['fullname'].touched) {
+                @if (form.controls['fullname'].getError('required')) {
+                    <span>El nombre de usuario no puede permanecer vacío</span>
+                }
+                @if (form.controls['fullname'].getError('minlength')) {
+                    <span>El nombre de usuario es muy corto</span>
+                }
+            }
+        </section>
+        <button type="submit" [disabled]="form.invalid">Enviar</button>
+    </fieldset>
+</form>
