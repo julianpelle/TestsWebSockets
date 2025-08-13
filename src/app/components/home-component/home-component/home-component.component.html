@@ -13,3 +13,14 @@
         <button id="go-to-news-button">Ver novedad</button>
     </div>
 </div>
+
+
+@if (showNotification) {
+ <div class="notification-overlay">
+  <div class="notification-popup">
+    <h2>¡Hay una nueva novedad!</h2>
+    <button (click)="goToNewsWs()">Ver novedad</button>
+    <button (click)="closeModal()">Cerrar</button>
+  </div>
+</div>
+}

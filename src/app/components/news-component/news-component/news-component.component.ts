@@ -4,6 +4,7 @@ import { NewsService } from '../../../service/news-service/news.service';
 import { New } from '../../../model/new';
 import SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
+import { NewsRealtimeService } from '../../../service/NewsRealtimeService/news-realtime.service';
 
 @Component({
   selector: 'app-news-component',
@@ -16,32 +17,19 @@ news: New[] = [];
 socketClient: any = null;
 
     constructor(
-    private newsService: NewsService
+    private newsService: NewsService,
+    private wsService: NewsRealtimeService // Inyectar servicio
+
   ) {}
 
 
   ngOnInit(): void {
     this.obtenerNoticias();
-    let ws = new SockJS('http://localhost:8080/ws');
-    this.socketClient = Stomp.over(ws);
 
-
-  this.socketClient.connect(
-  {},                                     // headers
-  (frame: any) => {                       // onConnect
-    console.log('STOMP conectado:', frame);
-
-    this.socketClient.subscribe('/topic/news', (msg: any) => {
-      const payload = JSON.parse(msg.body);
-      this.news = [payload, ...this.news];
+    // Escuchar nuevas noticias
+    this.wsService.newsSubject.subscribe(() => {
+      this.obtenerNoticias(); // Actualizar lista
     });
-  },
-  (err: any) => {                          // onError
-    console.error('Error STOMP', err);
-  }
-);
-
-
   }
 
     private obtenerNoticias(){
