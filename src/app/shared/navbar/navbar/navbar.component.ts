@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../../service/auth-service/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,18 +14,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private sub?: Subscription;
 
   constructor(
-    private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.sub = this.authService.auth().subscribe({
-      next: (activeUser) => {
-        if(activeUser) {
-          this.activeUser = true;
-        }
-      }
-    });
+
   }
 
   ngOnDestroy(): void {
@@ -34,13 +26,5 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   onLogOut() {
-    this.authService.logout().subscribe({
-      next: (loggedOut) => {
-        if (loggedOut) {
-          this.activeUser = false;
-          this.router.navigate(['/home']);
-        }
-      }
-    })
   }
 }
