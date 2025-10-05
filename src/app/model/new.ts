@@ -1,7 +1,8 @@
     export interface New {
-    id?: number,
-    prioridad:number,
-    titulo:String,
-    descripcion:String,
-    activo:Boolean
+   id: string;
+  title: string;
+  active: boolean;
+  imageUrl?: string;
+  expirationDate?: string; // ISO string → después lo parseás a Date si querés
+  priority?: boolean;
 }

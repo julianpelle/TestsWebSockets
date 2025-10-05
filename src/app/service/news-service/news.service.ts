@@ -8,7 +8,7 @@ import { New } from '../../model/new';
 })
 export class NewsService {
   http= inject(HttpClient)
-  urlBase = `http://localhost:8080/api/news`
+  urlBase = `http://localhost:8080/contentful/news`
   constructor() { }
   getNews():Observable<New[]>{
     return this.http.get<New[]>(this.urlBase);
