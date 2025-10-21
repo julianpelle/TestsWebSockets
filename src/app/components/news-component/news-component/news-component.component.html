@@ -6,6 +6,19 @@
 @for (new of news; track $index) {
   <div class="new">
   <h1>{{new.title}}</h1>
+    <h2>{{new.description}}</h2>
+  <h2>{{new.url}}</h2>
+<img [src]="new.imageUrl" alt="{{ new.title }}" class="news-image" />
+</div>
+
+}
+<h1>Novedades en tiempo real de la web</h1>
+
+@for (new of newsWeb; track $index) {
+  <div class="new">
+  <h1>{{new.title}}</h1>
+  <h2>{{new.description}}</h2>
+  <h2>{{new.url}}</h2>
 <img [src]="new.imageUrl" alt="{{ new.title }}" class="news-image" />
 </div>
 
