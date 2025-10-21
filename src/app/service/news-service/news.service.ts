@@ -10,10 +10,10 @@ export class NewsService {
   http= inject(HttpClient)
   urlBase = `http://localhost:8080/contentful/news`
   constructor() { }
-  getNews():Observable<New[]>{
-    return this.http.get<New[]>(this.urlBase);
+  getNewsApp():Observable<New[]>{
+    return this.http.get<New[]>(`${this.urlBase}/app`);
   }
-  postNew(newPost:New):Observable<New>{
-    return this.http.post<New>(this.urlBase,newPost);
+  getNewsWeb():Observable<New[]>{
+    return this.http.get<New[]>(`${this.urlBase}/web`);
   }
 }

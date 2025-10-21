@@ -15,7 +15,7 @@ export class NewsRealtimeService {
     this.stompClient = Stomp.over(ws);
 
     this.stompClient.connect({}, () => {
-      this.stompClient.subscribe('/topic/news', () => {
+      this.stompClient.subscribe('/topic/news/app', () => {
         this.newsSubject.next(); // Notificar a los suscriptores
       });
     });

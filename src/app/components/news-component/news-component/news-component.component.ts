@@ -14,6 +14,8 @@ import { NewsRealtimeService } from '../../../service/NewsRealtimeService/news-r
 })
 export class NewsComponentComponent implements OnInit{
 news: New[] = [];
+newsWeb: New[] = [];
+
 socketClient: any = null;
 
     constructor(
@@ -29,16 +31,20 @@ socketClient: any = null;
     // Escuchar nuevas noticias
     this.wsService.newsSubject.subscribe(() => {
       this.obtenerNoticias(); // Actualizar lista
+
     });
   }
 
     private obtenerNoticias(){
-      this.newsService.getNews().subscribe((newsResponse: New[]) => {
+      this.newsService.getNewsApp().subscribe((newsResponse: New[]) => {
   console.log(newsResponse);
   this.news = newsResponse
 });
 
-
+      this.newsService.getNewsWeb().subscribe((newsResponse: New[]) => {
+  console.log(newsResponse);
+  this.newsWeb = newsResponse
+});
   }
 
 }
